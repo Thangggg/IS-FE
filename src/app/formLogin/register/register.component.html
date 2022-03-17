@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 100px">
+                <mat-card style="margin: 50px ">
+                    <form class="form-register" #f="ngForm" (ngSubmit)="f.form.valid && ngSubmit()" novalidate>
+                        <mat-error class="alert alert-primary">{{status}}</mat-error>
+                        <mat-form-field appearance="outline" style="width: 400px;">
+                            <mat-label>Họ và Tên</mat-label>
+                            <input matInput placeholder="Placeholder" name="name" [(ngModel)]="form.name" #name="ngModel" minlength="3" maxlength="50" required>
+                            <mat-error *ngIf="name.hasError('required')">Không được để trống</mat-error>
+                            <mat-error *ngIf="name.hasError('minlength')">Nhập tối thiểu 3 kí tự</mat-error>
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field appearance="outline" style="width: 400px;">
+                            <mat-label>Tên Đăng Nhập</mat-label>
+                            <input matInput placeholder="Placeholder" name="username" [(ngModel)]="form.username" #username="ngModel" minlength="3" maxlength="20" required>
+                            <mat-error *ngIf="username.hasError('required')">Không được để trống</mat-error>
+                            <mat-error *ngIf="username.hasError('minlength')">Nhập tối thiểu 3 kí tự</mat-error>
+                            <mat-error *ngIf="username.hasError('maxlength')">Nhập tối đa 20 kí tự</mat-error>
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field appearance="outline" style="width: 400px;">
+                            <mat-label>Email</mat-label>
+                            <input matInput placeholder="Placeholder" name="email" [(ngModel)]="form.email" [formControl]="emailFormControl"  required>
+                            <mat-error *ngIf="emailFormControl.hasError('required')">Không được để trống</mat-error>
+                            <mat-error *ngIf="emailFormControl.hasError('email')">Sai định dạng email -> Ex : abc@gmail.com</mat-error>
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field appearance="outline" style="width: 400px">
+                            <mat-label>Mật Khẩu</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" name="password" #password="ngModel" [(ngModel)]="form.password" minlength="3" maxlength="20">
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error *ngIf="password.hasError('required')">Không được để trống</mat-error>
+                            <mat-error *ngIf="password.hasError('minlength')">Nhập tối thiểu 3 kí tự</mat-error>
+                            <mat-error *ngIf="password.hasError('maxlength')">Nhập tối đa 20 kí tự</mat-error>
+                        </mat-form-field>
+                        <br>
+                        <button mat-raised-button color="warn">Đăng Kí</button>
+                    </form>
+                </mat-card>
+
+
+        </div>
+    </div>
+</div>
